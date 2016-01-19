@@ -9,10 +9,10 @@
 
     function service($http) {
         return {
+            number: 5,
             getSurveyList: get,
             get: get,
-            getTotalNumber: getTotalNumber,
-            getSurveyListLimit: getSurveyListLimit
+            getTotalNumber: getTotalNumber
         };
 
         function get() {
@@ -20,7 +20,7 @@
         }
 
         function getTotalNumber() {
-            return 5;
+            return getSurveyListLimit();
         }
 
         function getSurveyListLimit() {

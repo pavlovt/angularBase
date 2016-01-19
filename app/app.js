@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app', ['ui.router', 'surveyBuilder','surveyViewer'])
+    angular.module('app', ['ui.router'])
     .config(config)
     .run(run);
 
