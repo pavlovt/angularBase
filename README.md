@@ -10,4 +10,7 @@ Base Angular enviroment which makes is easy to start a new project.
  
 ## Usage
 Go in the repo and run: gulp
+
 This command will start the web server, compile your sass files and include the new js files in index.html
+
+After the server is started open in the browser the following address: http://localhost:3000/#/hi
