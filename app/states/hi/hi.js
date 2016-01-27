@@ -28,8 +28,8 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey'];
-    function controller($scope, survey) {
+    controller.$inject = ['$scope', 'survey', 'prompt'];
+    function controller($scope, survey, prompt) {
         $scope.survey = survey;
 
         $scope.sayHi = sayHi;
@@ -45,7 +45,17 @@
         }
 
         function sayHi2() {
-            $scope.date = 'qqq';
+            //ask the user for a string
+          prompt({
+            title: 'Give me a name',
+            message: 'What would you like to name it?',
+            input: true,
+            label: 'Name',
+            value: ''
+          }).then(function(name){
+            //the promise is resolved with the user input
+            console.log('and the name is ', name);
+          }); 
         }
     }
 
