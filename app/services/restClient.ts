@@ -1,4 +1,4 @@
-module Diplomat.Networking {
+module app.Networking {
     interface Window{
         error: any;
     }
@@ -137,12 +137,9 @@ module Diplomat.Networking {
         app: ng.IModule;
 
         constructor() {
-            this.app = angular.module("Diplomat.Networking");
+            this.app = angular.module("app");
             this.app.service("restClient", Service);
         }
     }
 
 }
-
-// Instantiate the service.
-new Diplomat.Networking.RestClient();

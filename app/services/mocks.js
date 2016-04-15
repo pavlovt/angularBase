@@ -1,12 +1,3 @@
-/// <reference path="./../../typings/main.d.ts" />
-
-module Diplomat.Services {
-
-    /*export interface PatientServiceInterface {
-        getPatient: Function;
-        createPatient: Function;
-    }*/
-
     //implements PatientServiceInterface
     class Service {
 
@@ -278,12 +269,7 @@ module Diplomat.Services {
         app: ng.IModule;
 
         constructor() {
-            this.app = angular.module("Diplomat");
-            this.app.service("MocksService", Service);
+            this.app = angular.module("app");
+            this.app.service("mocks", Service);
         }
     }
-
-}
-
-// Instantiate the service.
-new Diplomat.Services.MocksService();
