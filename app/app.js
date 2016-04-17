@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app', ['ui.router','cgPrompt'])
+    angular.module('app', ['ui.router','ui.bootstrap'])
     .config(config)
     .run(run);
 

@@ -3,22 +3,21 @@
 
     angular
         .module('app')
-        .directive('gridState', gridState)
+        .directive('indexState', directive)
         .config(config);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
-            .state('grid', {
+            .state('index', {
                 url: '/',
-                template: '<grid-state></grid-state>'
+                template: '<index-state></index-state>'
             });
     }
 
-    function gridState() {
+    function directive() {
         var directive = {
-            templateUrl: './states/grid/grid.html',
-            //template: '<div>qqq!</div>',
+            templateUrl: './states/index/index.html',
             restrict: 'E',
             controller: controller,
             scope: {}
@@ -27,9 +26,11 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', '$rootScope', 'survey'];
-    function controller($scope, $rootScope, survey) {
-        console.log('qqq');
+    controller.$inject = ['$scope', '$rootScope'];
+    function controller($scope, $rootScope) {
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
     }
 
 }(angular));
