@@ -1,7 +1,12 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app', ['ui.router','ui.bootstrap'])
+    angular.module('app', [
+        'ui.router',
+        'ui.bootstrap',
+        'angular.chosen',
+        'ngMockE2E'
+    ])
     .config(config)
     .run(run);
 
@@ -14,5 +19,7 @@
     function run() {
         
     }
+
+    
 
 })(angular);
