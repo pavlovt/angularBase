@@ -5,15 +5,17 @@
         .module('app')
         .factory('mocks', service);
 
-    service.$inject = ['$http'];
+    service.$inject = ['$http', '$httpBackend', 'conf', 'mockData'];
 
-    function service($http) {
+    function service($http, $httpBackend, conf, mockData) {
         // allowes to use regular expression when matching url
         function rx(regexp) {
             return {
                 test: function(url) {
-                    this.matches = url.match(config.webApi + regexp);
-                    // console.log('url', url, config.webApi + regexp, this.matches && this.matches.length);
+                    // do not add the api url on resources starting with dot e.g. ./states/*
+                    var tstUrl = regexp[0] === '.' ? regexp : conf.api + regexp
+                    this.matches = url.match(tstUrl);
+                    // console.log('url', url, conf.api + regexp, this.matches && this.matches.length);
                     return this.matches && this.matches.length > 0;
                 }
             };
@@ -22,20 +24,19 @@
         /**
          * Mocked apis
          */
-        // Account configuration
-        $httpBackend.whenGET(rx('account-configuration/business-units'))
-            .respond(accountConfBusinessUnits());
-
-        $httpBackend.whenGET(rx('account-configuration/groups'))
-            .respond(accountConfGroups());
+        // Account confuration
+        $httpBackend.whenGET(rx('users'))
+            .respond(mockData.users);
 
         /**
          * Real apis
          */
-        $httpBackend.whenPOST(config.webApi + 'patient/search/benefitinvestigation')
-            .passThrough();
-        $httpBackend.whenGET(rx('/requests/*'))
+        // do not mock the htmls and other state resources
+        $httpBackend.whenGET(rx('\./states/*'))
                 .passThrough();
+
+
+        return {};
     }
 
 }(angular));

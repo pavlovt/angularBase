@@ -5,9 +5,9 @@
         .module('app')
         .factory('api', service);
 
-    service.$inject = ['$http', 'config', "$rootScope", "$q"];
+    service.$inject = ['$http', 'conf', "$rootScope", "$q"];
 
-    function service($http, config, $rootScope, $q) {
+    function service($http, conf, $rootScope, $q) {
         return {
             get: get,
             post: post,
@@ -23,7 +23,7 @@
 
 
         function url(url) {
-            return config.webApi + url;
+            return conf.api + url;
         };
 
         function http(uri, method, args, headers, httpOptions) {
@@ -38,15 +38,15 @@
             headers = _.extend(addHeaders, headers);
 
             // Attach authorization token, if available.
-            if (config.user && config.user.token) {
+            if (conf.user && conf.user.token) {
                 //TODO: check this out
 
-                headers.Authorization = 'Bearer ' + config.user.token;
+                headers.Authorization = 'Bearer ' + conf.user.token;
             }
 
             var addHttpOptions = {
                 method: method,
-                url: this.url(uri),
+                url: url(uri),
                 headers: headers,
                 data: args
             };
@@ -58,11 +58,11 @@
 
             var defer = $q.defer();
             $http(httpOptions)
-                .then(this.handleSoftError)
+                .then(handleSoftError)
                 .then((res) => {
                     return defer.resolve(res);
                 }, (error) => {
-                    this.handleCriticalError(error);
+                    handleCriticalError(error);
                     return defer.reject(error);
                 }).finally(() => {
                     callCount--;
@@ -76,17 +76,17 @@
         };
 
         function get(url, args, headers, httpOptions) {
-            return this.http(url, 'GET', args, headers, httpOptions);
+            return http(url, 'GET', args, headers, httpOptions);
         };
 
         function post(url, args, headers, httpOptions) {
-            return this.http(url, 'POST', args, headers, httpOptions);
+            return http(url, 'POST', args, headers, httpOptions);
         };
         function put(url, args, headers, httpOptions) {
-            return this.http(url, 'PUT', args, headers, httpOptions);
+            return http(url, 'PUT', args, headers, httpOptions);
         };
         function del(url, args, headers, httpOptions) {
-            return this.http(url, 'DELETE', args, headers, httpOptions);
+            return http(url, 'DELETE', args, headers, httpOptions);
         };
 
         function handleSoftError(res) {
@@ -99,10 +99,7 @@
         };
 
         function handleCriticalError(error) {
-            var message = "URL:"+ error.config.url +" Status:"+ error.data.status || error.data.message + " Method: " + error.config.method || error.data.messageDetails + " Payload: " +JSON.stringify(error.config.data);
-            var errorData = { level: "5", message: message + " " + error.data.stackTrace  };
-            window.errors.push(errorData);
-            scope.$emit("alertMessage", { title: 'Server error', content: '', type: 'error' });
+            // scope.$emit("alertMessage", { title: 'Server error', content: '', type: 'error' });
             console.log('Server error: ', error);
             return {};
         };

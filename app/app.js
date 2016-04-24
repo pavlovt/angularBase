@@ -15,9 +15,9 @@
         $urlRouterProvider.otherwise('/');
     }
 
-    run.$inject = [];
-    function run() {
-        
+    run.$inject = ['mocks'];
+    function run(mocks) {
+        console.log('qqq');
     }
 
     
