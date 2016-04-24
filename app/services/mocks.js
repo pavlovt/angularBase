@@ -32,7 +32,7 @@
          * Real apis
          */
         // do not mock the htmls and other state resources
-        $httpBackend.whenGET(rx('\./states/*'))
+        $httpBackend.whenGET(rx('\./*'))
                 .passThrough();
 
 

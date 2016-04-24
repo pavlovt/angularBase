@@ -15,9 +15,9 @@
         $urlRouterProvider.otherwise('/');
     }
 
-    run.$inject = ['mocks'];
-    function run(mocks) {
-        console.log('qqq');
+    run.$inject = ['$rootScope', 'mocks', 'conf'];
+    function run($rootScope, mocks, conf) {
+        $rootScope.conf = conf;
     }
 
     

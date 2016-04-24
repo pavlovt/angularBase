@@ -7,7 +7,7 @@
 
     function directive() {
         var directive = {
-            templateUrl: './states/menu/menu.html',
+            templateUrl: './components/menu/menu.html',
             restrict: 'E',
             controller: controller,
             scope: {}
@@ -18,7 +18,7 @@
 
     controller.$inject = ['$scope', 'conf'];
     function controller($scope, conf) {
-        
+        console.log($scope.conf);
     }
 
 }(angular));

@@ -25,9 +25,13 @@
         your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- <app></app> -->
-    <div>
-        <ui-view></ui-view>
+    <div class="container">
+        <menu></menu>
+        <div class="row">
+            <div class="col-md-12">
+                <ui-view></ui-view>
+            </div>
+        </div>
     </div>
 
 
@@ -91,10 +95,10 @@
     <script src="services/mocks.js"></script>
     <script src="services/survey.js"></script>
     <script src="components/menu/menu.js"></script>
-    <script src="libs/datatables/datatables.min.js"></script>
-    <script src="states/app/app.js"></script>
-    <script src="states/home/home.js"></script>
     <script src="states/hi/hi.js"></script>
+    <script src="libs/datatables/datatables.min.js"></script>
+    <script src="states/home/home.js"></script>
+    <script src="states/news/news.js"></script>
     <!-- endinject -->
 
     <!-- inject:templates:js -->
