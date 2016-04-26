@@ -5,7 +5,8 @@
         'ui.router',
         'ui.bootstrap',
         'angular.chosen',
-        'ngMockE2E'
+        'ngMockE2E',
+        'datatables'
     ])
     .config(config)
     .run(run);
