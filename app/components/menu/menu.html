@@ -16,9 +16,9 @@
         <li ng-repeat="item in $root.conf.menu" ui-sref-active="active"><a href="#" ui-sref="{{item.state}}">{{item.label}}</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active"><a href="#" ui-sref="users">Users</a></li>
         <li class="dropdown">
-          <li ui-sref-active="active"><a href="#" ui-sref="users">Users</a></li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Profile</a></li>
             <li><a href="#">Change password</a></li>
