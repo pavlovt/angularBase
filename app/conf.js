@@ -7,7 +7,18 @@
 
     function service() {
         return {
-            api: '/api/',
+            mock: {
+                api: '/api/',
+            },
+            dev: {
+                api: '/api/',
+            },
+            mock: {
+                api: '/api/',
+            },
+            backand: {
+                api: '/api/',
+            },
             menu: [
                 {label: 'HOME', state: 'home'}, 
                 {label: 'NEWS', state: 'news'}, 
