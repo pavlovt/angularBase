@@ -27,9 +27,14 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'conf', 'DTOptionsBuilder', 'api'];
-    function controller($scope, conf, DTOptionsBuilder, api) {
-        $scope.vm = {dtOptions: {}, dtInstance: {}};
+    controller.$inject = ['$scope', 'conf', '$compile', 'api', '$state'];
+    function controller($scope, conf, $compile, api, $state) {
+        $scope.vm = {
+            users : [],
+            dtInstance: {},
+            edit: edit,
+            del: del
+        };
 
         $scope.vm.dtOptions = {
             /*ajax: { 
@@ -38,11 +43,13 @@
             },*/
             ajax: function(data, callback, settings) {
                 return api
-                    .get('users')
+                    .get('/be/users')
                     .then(function (res) {
+                        $scope.vm.users = res.data;
                         callback(res.data);
                     });
-            }
+            },
+            createdRow: createdRow
         };
 
         /*$scope.vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -50,12 +57,29 @@
         }).withPaginationType('full_numbers');*/
 
         $scope.vm.dtColumns = [
-            {data: 'first_name', title: 'First Name'},
-            {data: 'last_name', title: 'Last Name'},
+            {data: 'firstName', title: 'First Name'},
+            {data: 'lastName', title: 'Last Name'},
             {data: 'email', title: 'Email'},
             {data: 'gender', title: 'Gender'},
-            {data: 'date', title: 'Birth Date'},
+            {data: '', render: function ( data, type, row, meta ) {
+                return  '<action class="btn btn-primary" click="vm.edit" data="' + row.id + '"><i class="fa fa-edit"></i></action>&nbsp;' +
+                        '<action class="btn btn-danger" click="vm.delete" data="' + row.id + '"><i class="fa fa-trash-o"></i></action>&nbsp;';
+            }},
         ]
+
+        function createdRow(row, data, dataIndex) {
+            // Recompiling so we can bind Angular directive to the DT
+            $compile(angular.element(row).contents())($scope);
+        }
+
+        function edit(id) {
+            $state.go('users-edit', {id:id});
+        }
+
+        function del(id) {
+            alert(id);
+            $scope.vm.dtInstance.reloadData();
+        }
     }
 
 }(angular));

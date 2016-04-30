@@ -7,7 +7,9 @@
 
     function service() {
         return {
-            mock: {
+            // we may have different backend depending if we are on development or production enviroment
+            env: 'dev',
+            prod: {
                 api: '/api/',
             },
             dev: {
@@ -17,7 +19,7 @@
                 api: '/api/',
             },
             backand: {
-                api: '/api/',
+                api: '/1/objects/',
             },
             menu: [
                 {label: 'HOME', state: 'home'}, 
@@ -37,3 +39,9 @@
     }
 
 }(angular));
+
+/*
+var conf =  {
+    env: 'dev' // or 'prod'
+}
+ */

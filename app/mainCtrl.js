@@ -7,7 +7,7 @@
 
     controller.$inject = ['$scope', '$rootScope', 'api'];
     function controller($scope, $rootScope, api) {
-        console.log('zzz');
+        
     }
 
 }(angular));

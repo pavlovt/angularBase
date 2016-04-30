@@ -10,8 +10,8 @@
     function config($stateProvider) {
         $stateProvider
             .state('users-edit', {
-                url: '/users-edit',
-                title: 'users-edit',
+                url: '/users-edit/:id',
+                title: 'Edit User',
                 template: '<users-edit-state></users-edit-state>'
             });
     }
@@ -27,8 +27,18 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'api'];
-    function controller($scope, api) {
+    controller.$inject = ['$scope', 'api', '$stateParams'];
+    function controller($scope, api, $stateParams) {
+        $scope.vm = {
+            user: {}
+        };
+        var vm = $scope.vm;
+
+        api
+        .get('/be/users/' + $stateParams.id)
+        .then(function (res) {
+            _.assign(vm.user, res.data);
+        })
 
     }
 

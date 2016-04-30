@@ -5,9 +5,9 @@
         .module('app')
         .factory('api', service);
 
-    service.$inject = ['$http', 'conf', "$rootScope", "$q"];
+    service.$inject = ['$http', 'conf', '$rootScope', '$q', 'Backand'];
 
-    function service($http, conf, $rootScope, $q) {
+    function service($http, conf, $rootScope, $q, Backand) {
         return {
             get: get,
             post: post,
@@ -21,9 +21,18 @@
         //number of pending http calls
         var callCount = 0;
 
-
+        // format the url depending on the backend used: let's say that we want to get the users api
+        // - /rb/users - redirect to the real backend
+        // - /be/users - redirect to the backand.com
+        // - users - redirect to the local mocks
         function url(url) {
-            return conf.api + url;
+            if (url.match('/be/')) {
+                url = Backand.getApiUrl() + conf.backand.api + url.replace('/be/', '');
+            } else {
+                url = conf[conf.env].api + url.replace('/rb/', '');
+            }
+
+            return url;
         };
 
         function http(uri, method, args, headers, httpOptions) {
@@ -39,8 +48,6 @@
 
             // Attach authorization token, if available.
             if (conf.user && conf.user.token) {
-                //TODO: check this out
-
                 headers.Authorization = 'Bearer ' + conf.user.token;
             }
 
@@ -60,7 +67,7 @@
             $http(httpOptions)
                 .then(handleSoftError)
                 .then((res) => {
-                    return defer.resolve(res);
+                    return defer.resolve(transformResponse(res));
                 }, (error) => {
                     handleCriticalError(error);
                     return defer.reject(error);
@@ -112,6 +119,15 @@
             }
             callCount++;*/
         };
+
+        // transfer data depending on the backend it is comming from
+        function transformResponse(res) {
+            if (res.config.url.match('backand.com') && res.data && res.data.data) {
+                res.data = res.data.data;
+            }
+
+            return res;
+        }
     }
 
 }(angular));

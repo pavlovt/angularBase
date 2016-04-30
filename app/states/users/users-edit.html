@@ -1,32 +1,28 @@
 <div>
-    <h2>News</h2>
-
-    <table datatable="" class="row-border hover">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Foo</td>
-            <td>Bar</td>
-        </tr>
-        <tr>
-            <td>123</td>
-            <td>Someone</td>
-            <td>Youknow</td>
-        </tr>
-        <tr>
-            <td>987</td>
-            <td>Iamout</td>
-            <td>Ofinspiration</td>
-        </tr>
-        </tbody>
-    </table>
+    <h2>Edit User</h2>
+zz {{vm.q}}
+    <form>
+        <ext-input label="qqq" name="q" ng-model="vm.q" class="zz" i-class="zz"></ext-input>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+    </form>
     
 </div>
 

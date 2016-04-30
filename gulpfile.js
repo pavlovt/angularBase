@@ -30,7 +30,7 @@ gulp.task('lint', function () {
         .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('styles', ['clean-styles'], function () {
+gulp.task('styles', [/*'clean-styles'*/], function () {
     log('Compiling Sass --> CSS');
 
     return gulp.src('./app/styles/scss/builderapp.scss')
