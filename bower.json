@@ -30,7 +30,7 @@
     "ngUpload": "latest",
     "angular-translate": "latest",
     "angular-translate-loader-static-files": "latest",
-    "alertify.js": "https://github.com/alertifyjs/alertify.js",
+    "alertifyjs": "latest",
     "ngUpload": "latest",
     "angular-mocks": "~1.5",
     "angular-datatables": "~0.5"

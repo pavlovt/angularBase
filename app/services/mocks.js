@@ -35,6 +35,15 @@
         $httpBackend.whenGET(rx('\./*'))
                 .passThrough();
 
+        $httpBackend.whenGET(rx('.*backand\.com.*'))
+                .passThrough();
+        $httpBackend.whenPOST(rx('.*backand\.com.*'))
+                .passThrough();
+        $httpBackend.whenPUT(rx('.*backand\.com.*'))
+                .passThrough();
+        $httpBackend.whenDELETE(rx('.*backand\.com.*'))
+                .passThrough();
+
 
         return {};
     }

@@ -20,6 +20,7 @@
     function compile(el, attrs) {
         var excludedAttrs = ['class'],
             input = el.find('input'),
+            label = el.find('label'),
             attrNames = _(attrs).keys().filter(function (val) { return val.indexOf('$') === -1;}).value();
 
         _.each(attrNames, function (attr) {
@@ -29,12 +30,14 @@
             }
         });
 
+        if (attrs.label) label.html(attrs.label);
+
         return link;
     }
 
     function link($scope, el, attrs, form) {
         // console.log($scope, el, attrs, form);
-        $scope.label = attrs['label'] || '';
+        // $scope.label = attrs['label'] || '';
     }
 
 

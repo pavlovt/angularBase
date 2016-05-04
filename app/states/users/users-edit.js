@@ -27,18 +27,35 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'api', '$stateParams'];
-    function controller($scope, api, $stateParams) {
+    controller.$inject = ['$scope', 'api', '$stateParams', 'notify'];
+    function controller($scope, api, $stateParams, notify) {
         $scope.vm = {
-            user: {}
+            data: {},
+            save: save
         };
         var vm = $scope.vm;
-
+notify.error('qqq!');
         api
         .get('/be/users/' + $stateParams.id)
         .then(function (res) {
-            _.assign(vm.user, res.data);
+            _.assign(vm.data, res.data);
         })
+
+        function save() {
+            if (vm.data.id) {
+                api
+                .put('/be/users/' + $stateParams.id, vm.data)
+                .then(function (res) {
+                    alertify.log("The record is updated");
+                })
+            } else {
+                api
+                .post('/be/users/' + $stateParams.id, vm.data)
+                .then(function (res) {
+                    alertify.log("The record is created");
+                })
+            }
+        }
 
     }
 

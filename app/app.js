@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('app', [
+        'pascalprecht.translate',
         'ui.router',
         'ui.bootstrap',
         'angular.chosen',
