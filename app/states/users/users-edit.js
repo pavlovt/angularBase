@@ -27,14 +27,14 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'api', '$stateParams', 'notify'];
-    function controller($scope, api, $stateParams, notify) {
+    controller.$inject = ['$scope', 'api', '$stateParams', 'notify', '$state'];
+    function controller($scope, api, $stateParams, notify, $state) {
         $scope.vm = {
             data: {},
             save: save
         };
         var vm = $scope.vm;
-notify.error('qqq!');
+
         api
         .get('/be/users/' + $stateParams.id)
         .then(function (res) {
@@ -46,13 +46,15 @@ notify.error('qqq!');
                 api
                 .put('/be/users/' + $stateParams.id, vm.data)
                 .then(function (res) {
-                    alertify.log("The record is updated");
+                    notify.info("The record is updated");
+                    $state.go('users');
                 })
             } else {
                 api
                 .post('/be/users/' + $stateParams.id, vm.data)
                 .then(function (res) {
-                    alertify.log("The record is created");
+                    notify.info("The record is created");
+                    $state.go('users');
                 })
             }
         }
