@@ -4,7 +4,7 @@ Base Angular enviroment which makes is easy to start a new project.
 
 ## Installation
 - Install on your computer: Node.js
-- run: npm -g i gulp node-sass
+- run: npm -g i gulp node-sass bower
 - go in the repo and run: npm i (it is better if you open the command line as Administrator)
 - go in the repo and run: bower i
  
