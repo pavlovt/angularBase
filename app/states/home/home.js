@@ -27,8 +27,13 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', '$rootScope', 'api'];
-    function controller($scope, $rootScope, api) {
+    controller.$inject = ['$scope', '$rootScope', 'api', '$state'];
+    function controller($scope, $rootScope, api, $state) {
+        $scope.goto = function (site) {
+            $state.go('hi', {site: site})
+        }
+
+
         api
         .get('users')
         .then(function (res) {

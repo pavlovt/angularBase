@@ -11,7 +11,8 @@
         $stateProvider
             .state('hi', {
                 url: '/hi',
-                template: '<hi name="\'Bob\'"></hi>'
+                template: '<hi name="\'Bob\'"></hi>',
+                params: {site: ''}
             });
     }
 
@@ -28,8 +29,9 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', 'prompt'];
-    function controller($scope, survey, prompt) {
+    controller.$inject = ['$scope'];
+    function controller($scope) {
+        $stateParams.site
         $scope.survey = survey;
 
         $scope.sayHi = sayHi;
@@ -42,20 +44,6 @@
 
         function sayHi1() {
             return 'Hi Maria!';
-        }
-
-        function sayHi2() {
-            //ask the user for a string
-          prompt({
-            title: 'Give me a name',
-            message: 'What would you like to name it?',
-            input: true,
-            label: 'Name',
-            value: ''
-          }).then(function(name){
-            //the promise is resolved with the user input
-            console.log('and the name is ', name);
-          }); 
         }
     }
 
