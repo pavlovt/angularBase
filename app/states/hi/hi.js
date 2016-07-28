@@ -29,14 +29,12 @@
         return directive;
     }
 
-    controller.$inject = ['$scope'];
-    function controller($scope) {
-        $stateParams.site
+    controller.$inject = ['$scope', 'survey'];
+    function controller($scope, survey) {
         $scope.survey = survey;
 
         $scope.sayHi = sayHi;
         $scope.sayHi1 = sayHi1;
-        $scope.sayHi2 = sayHi2;
 
         function sayHi() {
             alert('Hi to you ' + $scope.name + '! Give me ' + survey.getTotalNumber() + '!');
