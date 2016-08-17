@@ -160,7 +160,7 @@ gulp.task('watch', function () {
     });
 });
 
-gulp.task('default', ['inject', 'lint', 'styles', 'open', 'watch']);
+gulp.task('default', ['inject', /*'lint',*/ 'styles', 'open', 'watch']);
 
 /////////////////////////////////////////
 

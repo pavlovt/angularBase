@@ -22,13 +22,7 @@
                 api: '/1/objects/',
             },
             menu: [
-                {label: 'HOME', state: 'home'}, 
-                {label: 'NEWS', state: 'news'}, 
-                {label: 'HOW TO PLAY', state: 'howto'}, 
-                {label: 'FAQ', state: 'faq'}, 
-                {label: 'TERMS AND CONDITIONS', state: 'terms'}, 
-                {label: 'ABOUT US', state: 'about'}, 
-                {label: 'CONTACT US', state: 'contact'}
+                {label: 'RX', state: 'rx'}, 
             ],
             get: get(),
         };

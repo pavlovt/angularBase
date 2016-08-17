@@ -31,13 +31,11 @@
     "angular-translate": "latest",
     "angular-translate-loader-static-files": "latest",
     "alertifyjs": "latest",
-    "ngUpload": "latest",
     "angular-mocks": "~1.5",
-    "angular-datatables": "~0.5"
+    "angular-datatables": "~0.5",
+    "angular-google-maps": "^2.3.4"
   },
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "resolutions": {
     "jquery": "~2.1",
     "angular": "~1.5",
