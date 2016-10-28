@@ -29,8 +29,26 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', '$timeout'];
-    function controller($scope, survey, $timeout) {
+    controller.$inject = ['$scope', 'survey', '$timeout', 'api'];
+    function controller($scope, survey, $timeout, api) {
+        api
+        .get('users')
+        .then(function (res) {
+            console.log(res.data);
+        });
+
+        api
+        .get('z1')
+        .then(function (res) {
+            console.log(res.data);
+        })
+
+        api
+        .get('z2')
+        .then(function (res) {
+            console.log(res.data);
+        })
+
         $scope.survey = survey;
 
         $scope.sayHi = sayHi;

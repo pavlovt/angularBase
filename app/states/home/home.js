@@ -40,6 +40,8 @@
             console.log(res.data);
         });
 
+        
+
         $(document).ready(function() {
             $('#example').DataTable();
         });
